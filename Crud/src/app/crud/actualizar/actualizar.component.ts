@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute }     from '@angular/router';
+import { ActivatedRoute, Router }     from '@angular/router';
+import { switchMap } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { CrudServiceService } from '../service/crud-service.service';
 
@@ -9,23 +10,23 @@ import { CrudServiceService } from '../service/crud-service.service';
   styleUrls: ['./actualizar.component.css']
 })
 export class ActualizarComponent implements OnInit{
-  newUser: User = {
-    id_user: 0,
-    tx_uid:      '',
-    tx_user:     '',
-    tx_email:    '',
-    tx_pass:     '',
-    tx_rol:      '',
-    tx_fullname: '',
-    tx_avatar:   ''
-  };
+  newUser!: User;
 
-  constructor(private route: ActivatedRoute, private CrudService: CrudServiceService){
+  constructor(private route: ActivatedRoute, private CrudService: CrudServiceService,private router: Router){
 
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.route.params
+    .pipe(switchMap(( {id} )=> this.CrudService.getById(id))
+    )
+    .subscribe(user => this.newUser = user);
   }
 
+  onSubmit(user:User): void {
 
+    this.CrudService.actualizarUsuario(user).subscribe( resp =>{
+      this.router.navigate(['/listar']);
+    })
+
+  }
 }

@@ -18,6 +18,7 @@ export class BusquedaComponent implements OnInit {
   ngOnInit(): void {
     this.conseguirUsuarios();
 
+
   }
 
   deleteUser(id:number):void {
@@ -28,12 +29,13 @@ export class BusquedaComponent implements OnInit {
   }
 
   updateUser(id_user:number){
-    this.router.navigate([`/list/${id_user}`]);
+    this.router.navigate([`/update/${id_user}`]);
   }
 
   conseguirUsuarios(){
     this.Crudservice.buscarUsuarios().subscribe(users=>{
-      this.usuarios = users
+      this.usuarios = users;
+      console.log(this.usuarios);
     });
   }
 

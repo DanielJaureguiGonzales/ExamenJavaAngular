@@ -29,8 +29,9 @@ export class CrudServiceService {
     return this.httpClient.delete(url);
   }
 
-  actualizarUsuario(user:User,id:number): void {
-
+  actualizarUsuario(user:User) {
+    const url= `${this.apiUrl}/update/${user.id_user}`;
+    return this.httpClient.put<User>(url,user)
   }
 
 

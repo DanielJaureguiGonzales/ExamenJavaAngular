@@ -30,4 +30,9 @@ export class CreacionComponent {
         this.router.navigate(['/listar']);
       })
   }
+  selectFile(event:any){
+    console.log(event);
+
+  }
+
 }

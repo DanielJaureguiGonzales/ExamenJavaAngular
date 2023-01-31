@@ -17,7 +17,7 @@ const routes : Routes=[
     component: BusquedaComponent
   },
   {
-    path: 'actualizar/{:id}',
+    path: 'update/:id',
     component: ActualizarComponent
   }
 
