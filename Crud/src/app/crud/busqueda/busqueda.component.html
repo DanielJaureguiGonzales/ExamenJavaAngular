@@ -1,0 +1,36 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Rol</th>
+        <th scope="col">avatar</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <th>{{usuario.id_user}}</th>
+        <th>{{usuario.tx_user}}</th>
+        <td>{{usuario.tx_fullname}}</td>
+        <td>{{usuario.tx_rol}}</td>
+        <td>
+          <img [src]="usuario.tx_avatar" class="small" alt="">
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="updateUser(usuario.id_user)"><i class="bi bi-pencil"></i></button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUser(usuario.id_user)"><i class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
